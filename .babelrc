@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage", // 按需自动添加crojs里面的polyfill
+        "corejs": 3, // 使用corejs3版本
+      }
+    ],
+    "@babel/preset-react" // 编译react
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", { "corejs": 3 }]
+  ]
+}

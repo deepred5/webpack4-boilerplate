@@ -1,0 +1,120 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
+  entry: {
+    'trade-index': './src/pages/trade-index/app.js',
+    'trade-success': './src/pages/trade-success/app.js',
+    'trade-fail': './src/pages/trade-fail/app.js'
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name]/bundle.js',
+    chunkFilename: '[name]/bundle.chunk.js',
+  },
+  devServer: {
+    historyApiFallback: true,
+    overlay: true,
+    port: 9001,
+    open: true,
+    hot: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader',
+          'css-loader',
+          'postcss-loader'
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              importLoaders: 2
+            }
+          },
+          'sass-loader',
+          'postcss-loader'
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: '[name].[hash:7].[ext]', // images/[name].[hash:7].[ext] 也可以指定路径
+              outputPath: "images", // 图片输出路径
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|eot|svg|woff)$/,
+        loader: "url-loader",
+        options: {
+          name: '[name].[hash:7].[ext]',
+          outputPath: "fonts", // 字体输出路径
+        },
+      },
+    ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        // 打包业务中公共代码  priority低，后提前
+        common: {
+          name: "common",
+          chunks: "initial",
+          minSize: 1,
+          priority: 0,
+          minChunks: 3,
+        },
+        // 打包node_modules中的文件 priority更高，先提前
+        vendor: {
+          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "initial",
+          priority: 10,
+          minChunks: 2,
+        }
+      }
+    }
+  },
+  plugins: [
+    new HtmlWebpackPlugin(
+      {
+        template: './src/pages/trade-index/index.html',
+        filename: 'trade-index.html',
+        chunks: ['trade-index', 'common', 'vendor'],
+      }
+    ),
+    new HtmlWebpackPlugin(
+      {
+        template: './src/pages/trade-success/index.html',
+        filename: 'trade-success.html',
+        chunks: ['trade-success', 'common', 'vendor'],
+      }
+    ),
+    new HtmlWebpackPlugin(
+      {
+        template: './src/pages/trade-fail/index.html',
+        filename: 'trade-fail.html',
+        chunks: ['trade-fail', 'common', 'vendor'],
+      }
+    ),
+  ]
+}

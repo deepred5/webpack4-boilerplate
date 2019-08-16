@@ -1,0 +1,17 @@
+@import '~@/styles/normalize.css';
+@import './font.css';
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+html > body {
+  background-color: #f5f5f5;
+  min-height: 100%;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #000;
+  font-size: 16px;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+}
