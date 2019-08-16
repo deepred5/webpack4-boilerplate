@@ -3,6 +3,7 @@ const glob = require('glob');
 const path = require('path');
 
 /**
+ * 多页面路口
   {
     'trade-index': './src/pages/trade-index/index.js',
     'trade-success': './src/pages/trade-success/index.js',
@@ -23,6 +24,7 @@ function getEntry(globPath) {
 }
 
 /**
+ * 多页面html模板
  [new HtmlWebpackPlugin(
     {
       template: './src/pages/trade-index/index.html',

@@ -1,3 +1,5 @@
+// 没有使用webpack-merge的最原始的dev配置
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 

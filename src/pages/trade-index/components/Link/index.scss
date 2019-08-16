@@ -5,5 +5,10 @@
   a {
     color: #F75C2F;
     font-size: 18px;
+    transition: .5s;
+
+    &:hover {
+      color: #F7322F
+    }
   }
 }
