@@ -1,6 +1,8 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
+const apiMocker = require('mocker-api');
+const devServerProxy = require('./devServerProxy');
 
 const devConfig = {
   mode: 'development',
@@ -16,6 +18,10 @@ const devConfig = {
     port: 9001,
     open: true,
     hot: true,
+    before(app) {
+      apiMocker(app, path.resolve(__dirname, '../mock/index.js'))
+    },
+    proxy: devServerProxy
   },
   module: {
     rules: [
@@ -36,8 +42,8 @@ const devConfig = {
               importLoaders: 2
             }
           },
+          'postcss-loader',
           'sass-loader',
-          'postcss-loader'
         ],
       }
     ]

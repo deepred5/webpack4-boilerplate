@@ -33,8 +33,8 @@ const prodConfig = {
             importLoaders: 2
           }
         },
-          'sass-loader',
-          'postcss-loader'
+        'postcss-loader',
+        'sass-loader',
         ],
       }
     ]
