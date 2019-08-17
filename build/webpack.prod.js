@@ -5,6 +5,10 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
+const webpack = require('webpack');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+
+const publicPath = '/';
 
 const prodConfig = {
   mode: 'production',
@@ -12,7 +16,7 @@ const prodConfig = {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name]/bundle.[contenthash:8].js',
     chunkFilename: '[name]/bundle.[contenthash:8].chunk.js', // splitChunks提取公共js时的命名规则
-    publicPath: '/',
+    publicPath: publicPath,
   },
   module: {
     rules: [
@@ -33,8 +37,8 @@ const prodConfig = {
             importLoaders: 2
           }
         },
-        'postcss-loader',
-        'sass-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       }
     ]
@@ -47,7 +51,24 @@ const prodConfig = {
     new OptimizeCSSPlugin({
       cssProcessorOptions: { safe: true } // 压缩打包的css
     }),
-    new ManifestPlugin(), // 生成manifest.json
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, './dll/vendors.manifest.json') // 读取dll打包后的manifest.json，分析哪些代码跳过
+    }),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(__dirname, '../src/assets/dll/*.js'),
+      publicPath: publicPath + "dll/",  // 注入到html中的路径
+      outputPath: "dll", // 最终输出的目录
+    }), // 把dll.js加进index.html里，并且拷贝文件到dist目录
+    new ManifestPlugin({
+      map(file) {
+        const reg = /dll\/vendors/g;
+        if (reg.test(file.name)) {
+          // 默认dll打包出来的key带有hash值,重命名成不带hash值
+          file.name = 'vendors.dll.js';
+        }
+        return file;
+      }
+    }), // 生成manifest.json
     new CleanWebpackPlugin(), // 打包前先删除之前的dist目录
   ]
 };

@@ -36,21 +36,13 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        // 打包业务中公共代码  priority低，后提取
+        // 打包业务中公共代码
         common: {
           name: "common",
           chunks: "initial",
           minSize: 1,
           priority: 0,
           minChunks: 3,
-        },
-        // 打包node_modules中的文件 priority更高，先提取
-        vendor: {
-          name: "vendor",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "initial",
-          priority: 10,
-          minChunks: 2,
         }
       }
     }

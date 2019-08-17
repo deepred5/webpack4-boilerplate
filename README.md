@@ -31,9 +31,18 @@ npm run proxy
 ```
 
 打包
+
+第一次打包，先打dll
+```
+npm run dll
+```
+然后再打包
 ```
 npm run build
 ```
+以后打包，只需执行`npm run build`
+
+如果增加了新的npm包，则需要修改`webpack.dll.js`的`entry`路口,把新包加进去，然后重新打dll
 ### 说明
 ***
 `pages`目录下，每个文件夹为单独的一个页面
@@ -46,7 +55,7 @@ npm run build
 
 ***
 
-`assets`目录下，放静态资源，比如图片资源
+`assets`目录下，放静态资源，比如图片资源和dll文件
 
 ***
 `styles`目录下，放公共全局的css
@@ -58,7 +67,7 @@ npm run build
 ***
 `build`目录为webpack打包配置，有详细的注解
 
-代码分割使用的是`splitChunks`配置
+代码分割使用的是`splitChunks`配置和`dll`打包
 ```javascript
 optimization: {
     splitChunks: {
@@ -70,18 +79,30 @@ optimization: {
           minSize: 1,
           priority: 0,
           minChunks: 3, // 同时引用了3次才打包
-        },
-        // 打包node_modules中的文件
-        vendor: {
-          name: "vendor",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "initial",
-          priority: 10,
-          minChunks: 2, // 同时引用了2次才打包
         }
       }
     }
   }
+```
+```javascript
+module.exports = {
+  mode: 'production',
+  entry: {
+    vendors: ['react', 'react-dom', 'axios'] // 手动指定打包哪些库
+  },
+  output: {
+    path: dllPath,
+    filename: '[name].[hash:8].dll.js',
+    library: '_dll_[name]'
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new webpack.DllPlugin({
+      path: path.join(__dirname, './dll/[name].manifest.json'),
+      name: '_dll_[name]',
+    }),
+  ],
+}
 ```
 接口代理详见`devServerProxy.js`
 ```javascript
