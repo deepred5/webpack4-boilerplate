@@ -10,6 +10,6 @@
     "@babel/preset-react" // 编译react
   ],
   "plugins": [
-    ["@babel/plugin-transform-runtime", { "corejs": 3 }] // async语法要用到插件
+    ["@babel/plugin-transform-runtime", { "corejs": 3 }]
   ]
 }

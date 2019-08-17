@@ -7,9 +7,15 @@ import './index.scss';
 import { util } from '@/utils/index';
 util();
 
+
 function Demo() {
   useEffect(() => {
-    axios.get('/api/girls').then(({ data }) => console.log(data))
+    async function fetchData() {
+      const { data } = await axios.get('/api/girls');
+      console.log(data);
+    }
+
+    fetchData()
   }, []);
   return (
     <div className="home">

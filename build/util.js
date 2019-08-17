@@ -10,6 +10,14 @@ const path = require('path');
     'trade-fail': './src/pages/trade-fail/index.js'
   }
  */
+
+// React兼容低版本
+// import 'core-js/es/map';
+// import 'core-js/es/set';
+
+// axios兼容ie11
+// import 'core-js/es/promise';
+
 function getEntry(globPath) {
   const files = glob.sync(globPath);
 
@@ -17,7 +25,7 @@ function getEntry(globPath) {
 
   files.forEach(entry => {
     const entryName = path.dirname(entry).split('/').pop();
-    entries[entryName] = entry
+    entries[entryName] = ['core-js/es/map', 'core-js/es/set', 'core-js/es/promise', entry]
   });
 
   return entries;
@@ -44,7 +52,7 @@ function getHtmlWebpackPlugin(globPath) {
       {
         template: entry,
         filename: entryName + '.html',
-        chunks: [entryName,'vendor','common'], // common和vendor是splitChunks抽取的公共文件
+        chunks: [entryName, 'vendor', 'common'], // common和vendor是splitChunks抽取的公共文件
       }
     ));
   });
