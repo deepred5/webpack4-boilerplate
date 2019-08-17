@@ -16,7 +16,7 @@ function getEntry(globPath) {
   const entries = {};
 
   files.forEach(entry => {
-    const entryName = path.dirname(entry).split(path.sep).pop();
+    const entryName = path.dirname(entry).split('/').pop();
     entries[entryName] = entry
   });
 
@@ -39,7 +39,7 @@ function getHtmlWebpackPlugin(globPath) {
   const htmlArr = [];
 
   files.forEach(entry => {
-    const entryName = path.dirname(entry).split(path.sep).pop();
+    const entryName = path.dirname(entry).split('/').pop();
     htmlArr.push(new HtmlWebpackPlugin(
       {
         template: entry,
