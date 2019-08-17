@@ -25,8 +25,9 @@ module.exports = {
       },
       {
         test: /\.(ttf|eot|svg|woff2?)$/,
-        loader: "file-loader", // file-loader直接拷贝文件，不会转成base64
+        loader: "url-loader",
         options: {
+          limit: 1000,
           name: '[name].[hash:7].[ext]',
           outputPath: "fonts", // 字体输出路径
         },
