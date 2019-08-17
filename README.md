@@ -4,7 +4,7 @@ webpack4 多页面打包模板
 * 支持React
 * 支持scss, autoprefixer自动加浏览器前缀, icon字体图标
 * ES6+语法 babel编译成 ES5语法 
-* 提前公共css和js，自动添加版本号
+* 提取公共css和js，自动添加版本号
 * 打包压缩js和css
 * Mock数据 接口转发
 
@@ -93,3 +93,6 @@ const proxy = {
   },
 }
 ```
+
+### 其他
+* 使用dll加快打包速度,参考项目分支[feature/dll](https://github.com/deepred5/webpack4-boilerplate/tree/feature/dll)

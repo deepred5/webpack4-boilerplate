@@ -34,7 +34,7 @@ const devConfig = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: ['style-loader',
           {
             loader: 'css-loader',

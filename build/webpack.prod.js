@@ -24,7 +24,7 @@ const prodConfig = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: [MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
