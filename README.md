@@ -93,3 +93,6 @@ const proxy = {
   },
 }
 ```
+
+### 其他
+* 使用dll加快打包速度,参考项目分支[feature/dll](https://github.com/deepred5/webpack4-boilerplate/tree/feature/dll)

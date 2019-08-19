@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 
@@ -24,7 +25,7 @@ const prodConfig = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: [MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
@@ -33,8 +34,8 @@ const prodConfig = {
             importLoaders: 2
           }
         },
-        'postcss-loader',
-        'sass-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       }
     ]
@@ -49,7 +50,21 @@ const prodConfig = {
     }),
     new ManifestPlugin(), // 生成manifest.json
     new CleanWebpackPlugin(), // 打包前先删除之前的dist目录
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin({ // 去掉console
+        terserOptions: {
+          compress: {
+            warnings: false,
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ['console.log']
+          },
+        },
+      }),
+    ],
+  }
 };
 
 module.exports = merge(baseConfig, prodConfig);
