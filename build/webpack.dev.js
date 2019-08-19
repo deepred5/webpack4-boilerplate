@@ -22,7 +22,8 @@ const devConfig = {
     before(app) {
       apiMocker(app, path.resolve(__dirname, '../mock/index.js'))
     },
-    proxy: devServerProxy
+    proxy: devServerProxy,
+    host: '0.0.0.0'
   },
   module: {
     rules: [
