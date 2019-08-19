@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
+import { hot } from 'react-hot-loader/root';
 import logo from '@/assets/img/girl.jpg';
 import '@/styles/index.scss';
 import './index.scss';
@@ -16,4 +17,6 @@ class Demo extends Component {
     )
   }
 }
-ReactDom.render(<Demo />, document.getElementById('app'));
+const App = hot(Demo);
+
+ReactDom.render(<App />, document.getElementById('app'));

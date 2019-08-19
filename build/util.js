@@ -25,7 +25,7 @@ function getEntry(globPath) {
 
   files.forEach(entry => {
     const entryName = path.dirname(entry).split('/').pop();
-    entries[entryName] = ['core-js/es/map', 'core-js/es/set', 'core-js/es/promise', entry]
+    entries[entryName] = ['core-js/es/map', 'core-js/es/set', 'core-js/es/promise', 'react-hot-loader/patch', entry]
   });
 
   return entries;

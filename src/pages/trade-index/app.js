@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
+import { hot } from 'react-hot-loader/root';
 import Link from './components/Link';
 import '@/styles/index.scss';
 import './index.scss';
@@ -24,4 +25,5 @@ function Demo() {
     </div>
   )
 }
-ReactDom.render(<Demo />, document.getElementById('app'));
+const App = hot(Demo);
+ReactDom.render(<App />, document.getElementById('app'));
