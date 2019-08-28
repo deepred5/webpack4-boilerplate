@@ -51,8 +51,8 @@ function getHtmlWebpackPlugin(globPath) {
     htmlArr.push(new HtmlWebpackPlugin(
       {
         template: entry,
-        filename: entryName + '.html',
-        chunks: [entryName, 'vendor', 'common'], // common和vendor是splitChunks抽取的公共文件
+        filename: entryName + '/index.html',
+        chunks: [entryName, 'vendor', 'common', 'manifest'], // common和vendor是splitChunks抽取的公共文件 manifest是运行时代码
       }
     ));
   });

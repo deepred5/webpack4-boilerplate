@@ -53,7 +53,8 @@ module.exports = {
           minChunks: 2,
         }
       }
-    }
+    },
+    runtimeChunk: { name: 'manifest' } // 运行时代码
   },
   plugins: [
     ...getHtmlWebpackPlugin('./src/pages/**/*.html')

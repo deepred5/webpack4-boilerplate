@@ -18,7 +18,7 @@ npm install
 ```
 npm run dev
 ```
-预览: http://localhost:9001/trade-index.html
+预览: http://localhost:9001/trade-index
 
 关闭mock
 ```
