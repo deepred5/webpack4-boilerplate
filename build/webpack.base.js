@@ -37,6 +37,8 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         // 打包业务中公共代码  priority低，后提取
+        // 只提取common和styles目录下的文件，打包成common.js和common.css
+        // 否则会把任意目录下的文件也打包进common里，造成污染
         common: {
           name: "common",
           chunks: "initial",
