@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @function fx($px) {
-  @return $px / 75 * 1rem; // 750px设计稿
+  @return $px / $default_root_font_size * 1rem; // 750px设计稿
 }

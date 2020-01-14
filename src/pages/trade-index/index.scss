@@ -1,4 +1,13 @@
+@import '@/styles/mixins.scss';
+
 .home {
   border: 1px solid #000;
   margin-top: 40px;
+
+  .demo {
+    width: fx(200);
+    height: fx(200);
+    background: red;
+    margin: auto;
+  }
 }

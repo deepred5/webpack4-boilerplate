@@ -1,5 +1,5 @@
 # webpack4-boilerplate
-webpack4 多页面打包模板
+webpack4 多页面打包模板(移动端)
 
 * 支持React
 * 支持scss, autoprefixer自动加浏览器前缀, icon字体图标
@@ -7,6 +7,8 @@ webpack4 多页面打包模板
 * 提取公共css和js，自动添加版本号
 * 打包压缩js和css
 * Mock数据 接口转发
+* Fastclick
+* Rem布局
 
 ### 使用
 安装

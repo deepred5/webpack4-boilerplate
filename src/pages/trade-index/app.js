@@ -22,6 +22,7 @@ function Demo() {
     <div className="home">
       <span className="iconfont icon-info-circle">请选择跳转路径</span>
       <Link />
+      <div className="demo"></div>
     </div>
   )
 }
