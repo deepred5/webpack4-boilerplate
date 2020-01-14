@@ -1,5 +1,10 @@
 // 两种方法引入css文件
-@import '~@/styles/normalize.css';
+// @import '~@/styles/normalize.css';
+
+@import './variables.scss';
+@import './normalize.css';
+@import './mixins.scss';
+@import './reset.scss';
 @import './font.css';
 
 * {

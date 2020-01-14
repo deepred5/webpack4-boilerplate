@@ -40,6 +40,7 @@ module.exports = {
         common: {
           name: "common",
           chunks: "initial",
+          test: /[\\/]src[\\/](common|styles)/,
           minSize: 1,
           priority: 0,
           minChunks: 3,

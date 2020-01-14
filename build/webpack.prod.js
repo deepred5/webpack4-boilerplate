@@ -11,8 +11,8 @@ const prodConfig = {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name]/bundle.[contenthash:8].js',
-    chunkFilename: '[name]/bundle.[contenthash:8].chunk.js', // splitChunks提取公共js时的命名规则
+    filename: 'js/[name]/bundle.[contenthash:8].js',
+    chunkFilename: 'js/[name]/bundle.[contenthash:8].chunk.js', // splitChunks提取公共js时的命名规则
     publicPath: '/',
   },
   module: {
@@ -42,8 +42,8 @@ const prodConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({ // 单独提取css文件
-      filename: '[name]/bundle.[contenthash:8].css',
-      chunkFilename: '[name]/bundle.[contenthash:8].chunk.css', // splitChunks提取公共css时的命名规则
+      filename: 'css/[name]/bundle.[contenthash:8].css',
+      chunkFilename: 'css/[name]/bundle.[contenthash:8].chunk.css', // splitChunks提取公共css时的命名规则
     }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: { safe: true } // 压缩打包的css

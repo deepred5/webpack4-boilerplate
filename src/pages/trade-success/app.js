@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import { hot } from 'react-hot-loader/root';
 import logo from '@/assets/img/girl.jpg';
-import '@/styles/index.scss';
+import '@/common/index';
 import './index.scss';
 import { util } from '@/utils/index';
 util();

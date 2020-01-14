@@ -1,0 +1,3 @@
+@function fx($px) {
+  @return $px / 75 * 1rem; // 750px设计稿
+}

@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import axios from 'axios';
 import { hot } from 'react-hot-loader/root';
 import Link from './components/Link';
-import '@/styles/index.scss';
+import '@/common/index';
 import './index.scss';
 import { util } from '@/utils/index';
 util();

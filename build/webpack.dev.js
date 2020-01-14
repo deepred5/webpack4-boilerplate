@@ -9,8 +9,8 @@ const devConfig = {
   devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name]/bundle.js',
-    chunkFilename: '[name]/bundle.chunk.js',
+    filename: 'js/[name]/bundle.js',
+    chunkFilename: 'js/[name]/bundle.chunk.js',
     publicPath: '/',
   },
   devServer: {
