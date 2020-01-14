@@ -95,4 +95,5 @@ const proxy = {
 ```
 
 ### 其他
+* 移动端定制,参考项目分支[feature/mobile](https://github.com/deepred5/webpack4-boilerplate/tree/feature/mobile)
 * 使用dll加快打包速度,参考项目分支[feature/dll](https://github.com/deepred5/webpack4-boilerplate/tree/feature/dll)
