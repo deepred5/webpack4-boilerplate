@@ -6,6 +6,7 @@ import Link from './components/Link';
 import '@/common/index';
 import './index.scss';
 import { util } from '@/utils/index';
+
 util();
 
 
