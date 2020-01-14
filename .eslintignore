@@ -2,3 +2,4 @@ build
 dist
 mock
 postcss.config.js
+src/styles/font

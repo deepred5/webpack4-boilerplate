@@ -5,14 +5,15 @@ import logo from '@/assets/img/girl.jpg';
 import '@/common/index';
 import './index.scss';
 import { util } from '@/utils/index';
+
 util();
 
 class Demo extends Component {
   render() {
     return (
       <div className="success">
-        <h1><span className="iconfont icon-check-circle check"></span>success</h1>
-        <img src={logo} className="logo" />
+        <h1><span className="iconfont icon-check-circle check" />success</h1>
+        <img src={logo} className="logo" alt="" />
       </div>
     )
   }
