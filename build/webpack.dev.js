@@ -15,6 +15,7 @@ const devConfig = {
   },
   devServer: {
     historyApiFallback: true,
+    disableHostCheck: true,
     overlay: true,
     port: 9001,
     open: true,
