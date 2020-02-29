@@ -26,7 +26,7 @@ const devConfig = {
     historyApiFallback: true,
     disableHostCheck: true,
     overlay: true,
-    port: 9002,
+    port: 9001,
     open: true,
     hot: true,
     before(app) {
