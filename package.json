@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.js",
+    "dev:backend": "cross-env BACKEND=true webpack-dev-server --config build/webpack.dev.js",
     "dev:no-mock": "cross-env NO_MOCK=true webpack-dev-server --config build/webpack.dev.js",
     "dev:proxy": "cross-env NO_MOCK=true PROXY=true webpack-dev-server --config build/webpack.dev.js",
     "build": "webpack --progress --config build/webpack.prod.js",
@@ -23,6 +24,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.0",
     "css-loader": "^3.2.0",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^18.0.1",
