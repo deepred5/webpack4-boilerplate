@@ -1,0 +1,19 @@
+.list-container {
+  li {
+    border: 1px solid;
+    line-height: 2;
+  }
+}
+
+.title {
+  color: rgb(55, 140, 219);
+}
+
+a {
+  &:visited,&:link,&:active {
+    color: red;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
