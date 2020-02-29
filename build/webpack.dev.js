@@ -4,14 +4,16 @@ const baseConfig = require('./webpack.base');
 const apiMocker = require('mocker-api');
 const devServerProxy = require('./devServerProxy');
 
+const publicPath = process.env.BACKEND ? 'http://0.0.0.0:9001/' : '/';
+
 const devConfig = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'js/[name]/bundle.js',
-    chunkFilename: 'js/[name]/bundle.chunk.js',
-    publicPath: '/',
+    filename: 'js/[name]/[name]-bundle.js',
+    chunkFilename: 'js/[name]/[name]-bundle.js',
+    publicPath
   },
   devServer: {
     historyApiFallback: true,
