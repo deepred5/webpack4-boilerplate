@@ -4,7 +4,14 @@ const baseConfig = require('./webpack.base');
 const apiMocker = require('mocker-api');
 const devServerProxy = require('./devServerProxy');
 
+// 正确引用路径，为了在后端引用js
 const publicPath = process.env.BACKEND ? 'http://0.0.0.0:9001/' : '/';
+// 跨域支持，为了在后端热更新
+const headers = process.env.BACKEND ? {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+  "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+} : {}
 
 const devConfig = {
   mode: 'development',
@@ -19,14 +26,15 @@ const devConfig = {
     historyApiFallback: true,
     disableHostCheck: true,
     overlay: true,
-    port: 9001,
+    port: 9002,
     open: true,
     hot: true,
     before(app) {
       apiMocker(app, path.resolve(__dirname, '../mock/index.js'))
     },
     proxy: devServerProxy,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    headers,
   },
   module: {
     rules: [
