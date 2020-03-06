@@ -9,7 +9,8 @@
     "dev:no-mock": "cross-env NO_MOCK=true webpack-dev-server --config build/webpack.dev.js",
     "dev:proxy": "cross-env NO_MOCK=true PROXY=true webpack-dev-server --config build/webpack.dev.js",
     "build": "webpack --progress --config build/webpack.prod.js",
-    "lint": "eslint --ext .js --ext .jsx src"
+    "lint": "eslint --ext .js --ext .jsx src",
+    "lint:fix": "eslint --ext .js --ext .jsx src --fix"
   },
   "keywords": [],
   "author": "",
