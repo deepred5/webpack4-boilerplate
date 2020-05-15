@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.dev.js",
     "dev:backend": "cross-env BACKEND=true webpack-dev-server --config build/webpack.dev.js",
+    "dev:custom": "cross-env CUSTOM=true webpack-dev-server --config build/webpack.dev.js",
     "dev:no-mock": "cross-env NO_MOCK=true webpack-dev-server --config build/webpack.dev.js",
     "dev:proxy": "cross-env NO_MOCK=true PROXY=true webpack-dev-server --config build/webpack.dev.js",
     "build": "webpack --progress --config build/webpack.prod.js",

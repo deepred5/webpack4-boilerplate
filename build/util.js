@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const glob = require('glob');
 const path = require('path');
+const fs = require('fs');
 
 /**
  * 多页面路口
@@ -18,8 +19,33 @@ const path = require('path');
 // axios兼容ie11
 // import 'core-js/es/promise';
 
+function filterEntry(files) {
+  const customPagesPath = path.resolve(__dirname, '../customPages.json');
+  const exists = fs.existsSync(customPagesPath);
+
+  if (exists) {
+    const customPagesTxt = fs.readFileSync(customPagesPath, { encoding: 'utf-8' });
+    try {
+      const customPagesObj = JSON.parse(customPagesTxt);
+      if (customPagesObj && customPagesObj.pages && customPagesObj.pages.length) {
+        files = files.filter((file) => customPagesObj.pages.some((page) => file.indexOf(page) > -1));
+      }
+    } catch {
+      console.info('customPages.json 文件格式不对');
+    } finally {
+      return files;
+    }
+  }
+
+  return files;
+}
+
 function getEntry(globPath) {
-  const files = glob.sync(globPath);
+  let files = glob.sync(globPath);
+
+  if (process.env.CUSTOM) {
+    files = filterEntry(files);
+  }
 
   const entries = {};
 
@@ -42,7 +68,11 @@ function getEntry(globPath) {
   )]
  */
 function getHtmlWebpackPlugin(globPath) {
-  const files = glob.sync(globPath);
+  let files = glob.sync(globPath);
+
+  if (process.env.CUSTOM) {
+    files = filterEntry(files);
+  }
 
   const htmlArr = [];
 

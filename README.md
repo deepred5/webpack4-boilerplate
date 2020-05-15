@@ -34,6 +34,21 @@ npm run proxy
 ```
 npm run build
 ```
+
+自定义打包目录
+```
+npm run dev:custom
+```
+开发阶段，如果`page`目录下页面过多，会导致打包缓慢，影响开发效率。可以新建一个`customPages.json`指定开发阶段需要打包的页面
+```json
+{
+  "pages": [
+    "trade-index",
+    "trade-success"
+  ]
+}
+```
+
 ### 说明
 ***
 `pages`目录下，每个文件夹为单独的一个页面
