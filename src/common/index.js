@@ -1,7 +1,7 @@
 /**
  * 多页面共用的全局方法
  * 1. 导入公共的index.scss
- * 2. 更加url参数动态添加vconsole
+ * 2. 根据url参数动态添加vconsole
  */
 
 import '@/styles/index.scss';
