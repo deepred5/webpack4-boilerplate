@@ -1,7 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const glob = require('glob');
 const path = require('path');
 const fs = require('fs');
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 /**
  * 多页面路口
@@ -90,7 +92,39 @@ function getHtmlWebpackPlugin(globPath) {
   return htmlArr;
 }
 
+
+/**
+ * PrerenderSPAPlugin预渲染
+ [new PrerenderSPAPlugin({
+    indexPath: path.resolve(__dirname, '../dist', 'trade-index', 'index.html'),
+    staticDir: path.resolve(__dirname, '../dist'),
+    routes: ['/trade-index'],
+  })]
+ */
+function getPrerenderSPAPlugin(globPath) {
+  let files = glob.sync(globPath);
+
+  const prerenderArr = [];
+
+  files.forEach(entry => {
+    const entryName = path.dirname(entry).split('/').pop();
+    prerenderArr.push(new PrerenderSPAPlugin(
+      {
+        indexPath: path.resolve(__dirname, '../dist', entryName, 'index.html'),
+        staticDir: path.resolve(__dirname, '../dist'),
+        routes: [`/${entryName}`],
+        renderer: new Renderer({
+          renderAfterTime: 2000, // Wait 2 seconds.
+        }),
+      }
+    ));
+  });
+
+  return prerenderArr;
+}
+
 module.exports = {
   getEntry,
-  getHtmlWebpackPlugin
+  getHtmlWebpackPlugin,
+  getPrerenderSPAPlugin,
 }

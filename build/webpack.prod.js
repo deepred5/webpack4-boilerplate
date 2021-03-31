@@ -6,7 +6,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
-
+const { getPrerenderSPAPlugin } = require('./util');
 const prodConfig = {
   mode: 'production',
   output: {
@@ -50,6 +50,7 @@ const prodConfig = {
     }),
     new ManifestPlugin(), // 生成manifest.json
     new CleanWebpackPlugin(), // 打包前先删除之前的dist目录
+    ...getPrerenderSPAPlugin('./src/pages/**/*.html'), // 预渲染静态页面html
   ],
   optimization: {
     minimizer: [
